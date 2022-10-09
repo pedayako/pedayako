@@ -3,8 +3,7 @@
 ### Amante de Tecnologia, Felinos e Livros 🐈
 <div style="display: inline_block"><br/>
 
-
-[![gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](https://mail.google.com/mail/francapedro68@gmail.com)
+[![Gmail Badge](https://img.shields.io/badge/-francapedro68@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:francapedro68@gmail.com)](mailto:francapedro68@gmail.com)
 [![lastfm](https://img.shields.io/badge/last.fm-D51007?style=for-the-badge&logo=last.fm&logoColor=white)](https://www.last.fm/user/pedayako)
 [![twitch](https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white)](https://www.twitch.tv/ipetolost)
 [![spotfy](https://img.shields.io/badge/Spotify-1ED760?&style=for-the-badge&logo=spotify&logoColor=white)](https://open.spotify.com/user/slga0oytr39etpa6dvpseh076?si=b7ccb78f8c2e4e23)
