@@ -2,7 +2,7 @@
 ## Olá! Eu sou o Pedro ;)
 ### Amante de Tecnologia, Felinos e Livros 🐈
 <div style="display: inline_block"><br/>
-[![gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white&link=mailto:arthur.passos@discente.ufma.br)](mailto:arthur.passos@discente.ufma.br)
+[![gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white&link=mailto:arthur.passos@discente.ufma.br)]
 [![lastfm](https://img.shields.io/badge/last.fm-D51007?style=for-the-badge&logo=last.fm&logoColor=white)](https://www.last.fm/user/pedayako)
 [![twitch](https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white)](https://www.twitch.tv/ipetolost)
 [![spotfy](https://img.shields.io/badge/Spotify-1ED760?&style=for-the-badge&logo=spotify&logoColor=white)](https://open.spotify.com/user/slga0oytr39etpa6dvpseh076?si=b7ccb78f8c2e4e23)
