@@ -1,6 +1,6 @@
 
 ## Olá! Eu sou o Pedro ;)
-### Amante de Tecnologia, Felinos e Livros 🐈
+### Amante de Tecnologia, Livros e pai da Luna 🐕
 <div style="display: inline_block"><br/>
 
 
