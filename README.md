@@ -9,11 +9,14 @@
 [![twitch](https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white)](https://www.twitch.tv/ipetolost)
 [![spotfy](https://img.shields.io/badge/Spotify-1ED760?&style=for-the-badge&logo=spotify&logoColor=white)](https://open.spotify.com/user/slga0oytr39etpa6dvpseh076?si=b7ccb78f8c2e4e23)
 
-<div>
-    <a href="https://github.com/pedayako">
-    <img height = "180em" src = "https://github-readme-stats.vercel.app/api?username=pedayako&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true" />
-    <img height = "180em" src = "https://github-readme-stats.vercel.app/api/top-langs/?username=pedayako&layout=compact&langs_count=16&theme=tokyonight" />
+<div align="center">
+
+  [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=pedayako&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true)](https://github.com/anuraghazra/github-readme-stats)
+
+  [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=pedayako&layout=compact&langs_count=10&theme=tokyonight)](https://github.com/anuraghazra/github-readme-stats)
+
 </div>
+
 
 
 ## Tecnologias que uso em meu dia a dia
