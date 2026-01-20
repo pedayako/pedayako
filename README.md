@@ -30,8 +30,7 @@
   <img src="https://skillicons.dev/icons?i=java,python,c,html,css,git,github,vscode,linux" />
 </p>
 
----
-
+--
 
 <p align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=pedayako&theme=tokyonight&hide_border=true" />
