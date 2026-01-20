@@ -10,13 +10,19 @@
 
 <div>
   <a href="https://github.com/pedayako">
-    <!-- TOTAL DE COMMITS COM TOKEN -->
-    <img height="180em"
-         src="https://github-readme-stats.vercel.app/api?username=pedayako&theme=tokyonight&show_icons=true&count_private=true&hide_border=true&include_all_commits=true&token=SEU_TOKEN_AQUI" />
+    
+    <!-- TOTAL DE COMMITS (INCLUINDO PRIVADOS) -->
+    <img
+      height="180em"
+      src="https://github-readme-stats.vercel.app/api?username=pedayako&theme=tokyonight&show_icons=true&count_private=true&include_all_commits=true&hide_border=true&token=SEU_TOKEN_AQUI"
+    />
 
-    <!-- LINGUAGENS MAIS USADAS -->
-    <img height="180em"
-         src="https://github-readme-stats.vercel.app/api/top-langs/?username=pedayako&layout=compact&theme=tokyonight&hide_border=true" />
+    <!-- LINGUAGENS MAIS USADAS (sem token aqui funciona bem) -->
+    <img
+      height="180em"
+      src="https://github-readme-stats.vercel.app/api/top-langs/?username=pedayako&layout=compact&theme=tokyonight&hide_border=true"
+    />
+
   </a>
 </div>
 
@@ -30,3 +36,4 @@
 </div>
 
 ---
+
