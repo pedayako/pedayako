@@ -1,13 +1,5 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=Pedro%20França&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32&desc=AI%20Researcher%20%26%20Engineer&descAlignY=55&descSize=18" />
-</div>
-
-<br/>
-
-<div align="center">
-
-  Pesquisador e engenheiro com foco em **IA Generativa e Sistemas Multimodais**, desenvolvendo soluções baseadas em LLMs, RAG e síntese de voz (TTS/STT). Vinculado ao **Núcleo de Computação Aplicada da UFMA**, com publicações em conferências nacionais na interseção de NLP, modelos de linguagem e acessibilidade computacional.
-
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=Olá,%20eu%20sou%20o%20Pedro!&fontSize=42&fontColor=fff&animation=twinkling&fontAlignY=32&desc=Amante%20de%20Tecnologia,%20Livros%20e%20pai%20da%20Luna%20🐕&descAlignY=55&descSize=18" />
 </div>
 
 <br/>
@@ -43,49 +35,22 @@
 
 ---
 
-### Research & Interests
+### 🛠 Tecnologias & Ferramentas
 
 <div align="center">
-
-![LLMs](https://img.shields.io/badge/Large%20Language%20Models-412991?style=flat-square&logoColor=white)
-![RAG](https://img.shields.io/badge/Retrieval--Augmented%20Generation-FF6B35?style=flat-square&logoColor=white)
-![Multimodal AI](https://img.shields.io/badge/Multimodal%20AI-6A0572?style=flat-square&logoColor=white)
-![NLP](https://img.shields.io/badge/NLP-00B4D8?style=flat-square&logoColor=white)
-![TTS / STT](https://img.shields.io/badge/TTS%20%2F%20STT-2DC653?style=flat-square&logoColor=white)
-![Prompt Engineering](https://img.shields.io/badge/Prompt%20Engineering-F4A261?style=flat-square&logoColor=white)
-![Vector Databases](https://img.shields.io/badge/Vector%20Databases-E63946?style=flat-square&logoColor=white)
-
+  <img src="https://skillicons.dev/icons?i=java,python,c,html,css,git,github,vscode,linux&theme=dark" />
 </div>
 
 ---
 
-### Technologies & Tools
-
-<div align="center">
-  <img src="https://skillicons.dev/icons?i=python,java,c,html,css,git,github,vscode,linux,docker,azure,aws&theme=dark" />
-</div>
-
-<br/>
-
-<div align="center">
-
-![LLMs](https://img.shields.io/badge/LLMs-412991?style=flat-square&logo=huggingface&logoColor=white)
-![Whisper](https://img.shields.io/badge/Whisper%20ASR-00B4D8?style=flat-square&logoColor=white)
-![Qdrant](https://img.shields.io/badge/Qdrant-DC143C?style=flat-square&logoColor=white)
-![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logoColor=white)
-![HuggingFace](https://img.shields.io/badge/Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black)
-
-</div>
-
----
-
-### GitHub Stats
+### 📊 GitHub Stats
 
 <div align="center">
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=pedayako&theme=tokyonight&hide_border=true" />
 </div>
 
 <br/>
+
 
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" />
