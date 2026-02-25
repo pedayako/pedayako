@@ -5,7 +5,7 @@
 <br/>
 
 <div align="center">
-  <a href="www.linkedin.com/in/pedrof-ia">
+  <a href="https://linkedin.com/in/pedrof-ia">
     <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>
   <a href="http://lattes.cnpq.br/6595005053595072">
