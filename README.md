@@ -30,3 +30,4 @@
   <img src="https://skillicons.dev/icons?i=java,python,c,html,css,git,github,vscode,linux" />
 </p>
 
+![Metrics](./metrics.svg)
