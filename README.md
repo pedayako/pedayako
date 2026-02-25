@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=220&section=header&text=Olá,%20eu%20sou%20o%20Pedro!&fontSize=46&fontColor=fff&animation=twinkling&fontAlignY=34&desc=AI%20Developer%20and%20Researcher%20-%20Chatbot%20and%20LLM%20Specialist%20-%20NLP%20-%20RAG&descAlignY=68&descSize=15" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,18,24&height=220&section=header&text=Olá,%20eu%20sou%20o%20Pedro!&fontSize=46&fontColor=ffffff&animation=twinkling&fontAlignY=34&desc=AI%20Developer%20and%20Researcher%20-%20Chatbot%20and%20LLM%20Specialist%20-%20NLP%20-%20RAG&descAlignY=68&descSize=15" />
 </div>
 
 <br/>
@@ -29,17 +29,18 @@
 ### Tecnologias & Ferramentas
 
 <div align="center">
-  <img src="https://skillicons.dev/icons?i=java,python,c,html,css,git,github,vscode,linux&theme=dark" />
+  <img src="https://skillicons.dev/icons?i=java,kotlin,python,c,html,css,git,github,aws,azure,docker&theme=dark" />
 </div>
 
 <br/>
 
 <div align="center">
+  <img src="https://img.shields.io/badge/LiteLLM-111111?style=for-the-badge&logo=litellm&logoColor=white" />
   <img src="https://img.shields.io/badge/Hugging%20Face-FFCC00?style=for-the-badge&logo=huggingface&logoColor=000" />
   <img src="https://img.shields.io/badge/LangChain-111111?style=for-the-badge&logo=langchain&logoColor=white" />
   <img src="https://img.shields.io/badge/RAG-Retrieval%20Augmented%20Generation-6E56CF?style=for-the-badge" />
-  <img src="https://img.shields.io/badge/Multimodal-Text%20%2B%20Vision%20%2B%20Audio-22C55E?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Qdrant-Vector%20DB-FF6B6B?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Multimodal-Text%20%2B%20Vision%20%2B%20Audio-22C55E?style=for-the-badge" />
 </div>
 
 ---
