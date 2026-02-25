@@ -5,8 +5,8 @@
 <br/>
 
 <div align="center">
-  <a href="mailto:francapedro68@gmail.com">
-    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+  <a href="www.linkedin.com/in/pedrof-ia">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>
   <a href="http://lattes.cnpq.br/6595005053595072">
     <img src="https://img.shields.io/badge/Lattes-1A8FBE?style=for-the-badge&logo=academia&logoColor=white" />
@@ -19,12 +19,6 @@
   </a>
   <a href="https://www.last.fm/user/pedayako">
     <img src="https://img.shields.io/badge/last.fm-D51007?style=for-the-badge&logo=last.fm&logoColor=white" />
-  </a>
-  <a href="https://www.twitch.tv/ipetolost">
-    <img src="https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white" />
-  </a>
-  <a href="https://open.spotify.com/user/pedayako">
-    <img src="https://img.shields.io/badge/Spotify-1ED760?style=for-the-badge&logo=spotify&logoColor=white" />
   </a>
 </div>
 
