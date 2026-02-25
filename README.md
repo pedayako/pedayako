@@ -19,6 +19,18 @@
   </a>
 </div>
 
+<div align="center">
+  <a href="http://lattes.cnpq.br/6595005053595072">
+    <img src="https://img.shields.io/badge/Lattes-1A8FBE?style=for-the-badge&logo=academia&logoColor=white" />
+  </a>
+  <a href="https://scholar.google.com.br/citations?user=9AXdPGUAAAAJ&hl=pt-BR&oi=sra">
+    <img src="https://img.shields.io/badge/Google%20Scholar-4285F4?style=for-the-badge&logo=google-scholar&logoColor=white" />
+  </a>
+  <a href="https://orcid.org/0009-0009-2226-1125">
+    <img src="https://img.shields.io/badge/ORCID-A6CE39?style=for-the-badge&logo=orcid&logoColor=white" />
+  </a>
+</div>
+
 <br/>
 
 ---
@@ -39,3 +51,7 @@
 
 <br/>
 
+
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=100&section=footer" />
+</div>
