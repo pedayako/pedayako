@@ -1,9 +1,7 @@
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,18,24&height=220&section=header&text=Olá,%20eu%20sou%20o%20Pedro!&fontSize=46&fontColor=ffffff&animation=twinkling&fontAlignY=34&desc=AI%20Developer%20and%20Researcher%20-%20Chatbot%20and%20LLM%20Specialist%20-%20NLP%20-%20RAG&descAlignY=68&descSize=15" />
 </div>
-
 <br/>
-
 <div align="center">
   <a href="https://linkedin.com/in/pedrof-ia">
     <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
@@ -21,7 +19,6 @@
     <img src="https://img.shields.io/badge/last.fm-D51007?style=for-the-badge&logo=last.fm&logoColor=white" />
   </a>
 </div>
-
 <br/>
 
 ---
@@ -31,9 +28,7 @@
 <div align="center">
   <img src="https://skillicons.dev/icons?i=java,kotlin,python,c,html,css,git,github,aws,azure,docker&theme=dark" />
 </div>
-
 <br/>
-
 <div align="center">
   <img src="https://img.shields.io/badge/LiteLLM-111111?style=for-the-badge&logo=litellm&logoColor=white" />
   <img src="https://img.shields.io/badge/Hugging%20Face-FFCC00?style=for-the-badge&logo=huggingface&logoColor=000" />
@@ -48,11 +43,9 @@
 ### GitHub Stats
 
 <div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=pedayako&theme=tokyonight&hide_border=true" />
+  <img src="https://streak-stats.demolab.com/?user=pedayako&theme=tokyonight&hide_border=true" />
 </div>
-
 <br/>
-
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,18,24&height=220&section=footer" />
 </div>
