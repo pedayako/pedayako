@@ -41,11 +41,7 @@
 ---
 
 ### GitHub Stats
-
 <div align="center">
-  <img src="https://streak-stats.demolab.com/?user=pedayako&theme=tokyonight&hide_border=true" />
-</div>
-<br/>
-<div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,18,24&height=220&section=footer" />
+  <img height="180em" src="https://github-readme-stats-seven-ecru-50.vercel.app/api?username=pedayako&theme=tokyonight&hide_border=true&show_icons=true&count_private=true&include_all_commits=true" />
+  <img height="180em" src="https://github-readme-stats-seven-ecru-50.vercel.app/api/top-langs/?username=pedayako&theme=tokyonight&hide_border=true&layout=compact&langs_count=6" />
 </div>
