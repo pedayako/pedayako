@@ -37,11 +37,3 @@
   <img src="https://img.shields.io/badge/Qdrant-Vector%20DB-FF6B6B?style=for-the-badge" />
   <img src="https://img.shields.io/badge/Multimodal-Text%20%2B%20Vision%20%2B%20Audio-22C55E?style=for-the-badge" />
 </div>
-
----
-
-### GitHub Stats
-<div align="center">
-  <img height="180em" src="https://github-readme-stats-seven-ecru-50.vercel.app/api?username=pedayako&theme=tokyonight&hide_border=true&show_icons=true&count_private=true&include_all_commits=true" />
-  <img height="180em" src="https://github-readme-stats-seven-ecru-50.vercel.app/api/top-langs/?username=pedayako&theme=tokyonight&hide_border=true&layout=compact&langs_count=6" />
-</div>
