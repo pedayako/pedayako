@@ -1,16 +1,3 @@
-<img align="left" width="300" src="./assets/avatar.svg" alt="mascote de Pedro em frente a um monitor" />
+<img src="./assets/card.svg" width="100%" alt="Pedro, AI Engineer - mascote, apresentação e estatísticas do GitHub" />
 
-```diff
-+ Hi, I'm Pedro, an AI Engineer
-
-@@ RAG, multi-agent systems, applied LLMs @@
-+ São Luís, Brasil 🇧🇷 — CNPq fellow @ NCA/UFMA
-+ Kotlin de dia, Python quando ninguém tá vendo
-- prompt perfeito de primeira
-```
-
-👉 [linkedin.com/in/pedrof-ia](https://linkedin.com/in/pedrof-ia) 👈
-
-<sub>[Lattes](http://lattes.cnpq.br/6595005053595072) · [Google Scholar](https://scholar.google.com.br/citations?user=9AXdPGUAAAAJ&hl=pt-BR&oi=sra) · [ORCID](https://orcid.org/0009-0009-2226-1125) · [last.fm](https://www.last.fm/user/pedayako)</sub>
-
-<br clear="left"/>
+👉 [linkedin.com/in/pedrof-ia](https://linkedin.com/in/pedrof-ia) 👈 · [Lattes](http://lattes.cnpq.br/6595005053595072) · [Google Scholar](https://scholar.google.com.br/citations?user=9AXdPGUAAAAJ&hl=pt-BR&oi=sra) · [ORCID](https://orcid.org/0009-0009-2226-1125) · [last.fm](https://www.last.fm/user/pedayako)
