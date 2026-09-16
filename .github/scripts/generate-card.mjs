@@ -3,7 +3,7 @@ import { writeFileSync } from "node:fs";
 const owner = process.env.GITHUB_REPOSITORY_OWNER || "pedayako";
 const token = process.env.GITHUB_TOKEN;
 
-const ROLE = "AI Engineer - CNPq fellow @ NCA/UFMA";
+const ROLE = "AI Engineer @ PagBank - CNPq fellow @ NCA/UFMA";
 const LOCATION = "São Luís, Brasil";
 const STACK = "Kotlin · Python · Java · Spring · Docker · AWS · Azure";
 const SOCIAL = "LinkedIn · Lattes · Scholar · ORCID · last.fm";

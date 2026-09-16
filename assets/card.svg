@@ -11,7 +11,7 @@
     <clipPath id="ln0"><rect x="48" y="64" width="0" height="24"><animate attributeName="width" to="85" dur="0.24s" begin="0.20s" fill="freeze" calcMode="linear"/></rect></clipPath>
     <clipPath id="ln1"><rect x="48" y="88" width="0" height="32"><animate attributeName="width" to="124" dur="0.24s" begin="0.56s" fill="freeze" calcMode="linear"/></rect></clipPath>
     <clipPath id="ln2"><rect x="48" y="140" width="0" height="24"><animate attributeName="width" to="152" dur="0.45s" begin="0.92s" fill="freeze" calcMode="linear"/></rect></clipPath>
-    <clipPath id="ln3"><rect x="48" y="169" width="0" height="27"><animate attributeName="width" to="419" dur="0.8s" begin="1.49s" fill="freeze" calcMode="linear"/></rect></clipPath>
+    <clipPath id="ln3"><rect x="48" y="169" width="0" height="27"><animate attributeName="width" to="533" dur="0.8s" begin="1.49s" fill="freeze" calcMode="linear"/></rect></clipPath>
     <clipPath id="ln4"><rect x="48" y="197" width="0" height="23"><animate attributeName="width" to="152" dur="0.48s" begin="2.41s" fill="freeze" calcMode="linear"/></rect></clipPath>
     <clipPath id="ln5"><rect x="48" y="240" width="0" height="24"><animate attributeName="width" to="162" dur="0.48s" begin="3.01s" fill="freeze" calcMode="linear"/></rect></clipPath>
     <clipPath id="ln6"><rect x="48" y="270" width="0" height="26"><animate attributeName="width" to="592" dur="0.8s" begin="3.61s" fill="freeze" calcMode="linear"/></rect></clipPath>
@@ -35,7 +35,7 @@
   <g clip-path="url(#ln0)"><text x="48" y="80" font-family="'Courier New',ui-monospace,monospace" font-size="16" fill="#3DD673">$ whoami</text></g>
   <g clip-path="url(#ln1)"><text x="48" y="112" font-family="'Courier New',ui-monospace,monospace" font-size="24" fill="#4F86D6">pedayako</text></g>
   <g clip-path="url(#ln2)"><text x="48" y="156" font-family="'Courier New',ui-monospace,monospace" font-size="16" fill="#3DD673">$ cat role.txt</text></g>
-  <g clip-path="url(#ln3)"><text x="48" y="188" font-family="'Courier New',ui-monospace,monospace" font-size="19" fill="#C9CDD3">AI Engineer - CNPq fellow @ NCA/UFMA</text></g>
+  <g clip-path="url(#ln3)"><text x="48" y="188" font-family="'Courier New',ui-monospace,monospace" font-size="19" fill="#C9CDD3">AI Engineer @ PagBank - CNPq fellow @ NCA/UFMA</text></g>
   <g clip-path="url(#ln4)"><text x="48" y="212" font-family="'Courier New',ui-monospace,monospace" font-size="15" fill="#6B7280">São Luís, Brasil</text></g>
   <g clip-path="url(#ln5)"><text x="48" y="256" font-family="'Courier New',ui-monospace,monospace" font-size="16" fill="#3DD673">$ cat stack.txt</text></g>
   <g clip-path="url(#ln6)"><text x="48" y="288" font-family="'Courier New',ui-monospace,monospace" font-size="18" fill="#C9CDD3">Kotlin &#183; Python &#183; Java &#183; Spring &#183; Docker &#183; AWS &#183; Azure</text></g>
