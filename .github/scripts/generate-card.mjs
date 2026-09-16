@@ -3,6 +3,11 @@ import { writeFileSync } from "node:fs";
 const owner = process.env.GITHUB_REPOSITORY_OWNER || "pedayako";
 const token = process.env.GITHUB_TOKEN;
 
+const ROLE = "AI Engineer - CNPq fellow @ NCA/UFMA";
+const LOCATION = "São Luís, Brasil";
+const STACK = "Kotlin · Python · Java · Spring · Docker · AWS · Azure";
+const SOCIAL = "LinkedIn · Lattes · Scholar · ORCID · last.fm";
+
 const headers = {
   Authorization: `Bearer ${token}`,
   "User-Agent": "card-svg-script",
@@ -17,193 +22,114 @@ async function fetchJSON(url, opts = {}) {
   return res.json();
 }
 
-function truncate(msg, max = 13) {
-  const first = msg.split("\n")[0].trim();
-  return first.length > max ? `${first.slice(0, max)}...` : first;
+async function graphql(query, variables) {
+  const res = await fetchJSON("https://api.github.com/graphql", {
+    method: "POST",
+    body: JSON.stringify({ query, variables }),
+  });
+  return res.data;
 }
 
 function escapeXML(str) {
-  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-async function getRecentCommitMessages(login, count = 2) {
-  const events = await fetchJSON(`https://api.github.com/users/${login}/events/public?per_page=30`);
-  const messages = [];
-  for (const ev of events) {
-    if (ev.type !== "PushEvent") continue;
-    for (const c of ev.payload?.commits ?? []) {
-      if (c.message) messages.push(c.message);
-      if (messages.length >= count) return messages;
+async function getTotalCommits(login, createdAt) {
+  const startYear = new Date(createdAt).getFullYear();
+  const endYear = new Date().getFullYear();
+  const query = `
+    query($login: String!, $from: DateTime!, $to: DateTime!) {
+      user(login: $login) {
+        contributionsCollection(from: $from, to: $to) { totalCommitContributions }
+      }
     }
+  `;
+  let total = 0;
+  for (let year = startYear; year <= endYear; year++) {
+    const data = await graphql(query, {
+      login,
+      from: `${year}-01-01T00:00:00Z`,
+      to: `${year}-12-31T23:59:59Z`,
+    });
+    total += data.user.contributionsCollection.totalCommitContributions;
   }
-  while (messages.length < count) messages.push("sem commits recentes");
-  return messages;
+  return total;
 }
 
 async function main() {
   const user = await fetchJSON(`https://api.github.com/users/${owner}`);
+  const totalCommits = await getTotalCommits(owner, user.created_at);
 
-  let repos = [];
-  let page = 1;
-  while (true) {
-    const batch = await fetchJSON(
-      `https://api.github.com/users/${owner}/repos?per_page=100&type=owner&page=${page}`
-    );
-    repos = repos.concat(batch);
-    if (batch.length < 100) break;
-    page++;
-  }
-
-  const stars = repos.reduce((sum, r) => sum + (r.stargazers_count || 0), 0);
-
-  const langCounts = {};
-  for (const r of repos) {
-    if (r.language) langCounts[r.language] = (langCounts[r.language] || 0) + 1;
-  }
-  const langEntries = Object.entries(langCounts).sort((a, b) => b[1] - a[1]);
-  const totalClassified = langEntries.reduce((s, [, c]) => s + c, 0);
-  const [topLang, topLangCount] = langEntries[0] || ["-", 0];
-  const topLangPct = totalClassified ? Math.round((topLangCount / totalClassified) * 100) : 0;
-
-  const query = `
-    query($login: String!) {
-      user(login: $login) {
-        contributionsCollection {
-          contributionCalendar {
-            weeks { contributionDays { date contributionCount } }
-          }
-        }
-      }
-    }
-  `;
-
-  const gql = await fetchJSON("https://api.github.com/graphql", {
-    method: "POST",
-    body: JSON.stringify({ query, variables: { login: owner } }),
-  });
-
-  const days = gql.data.user.contributionsCollection.contributionCalendar.weeks
-    .flatMap((w) => w.contributionDays)
-    .sort((a, b) => new Date(a.date) - new Date(b.date));
-
-  let streak = 0;
-  for (let i = days.length - 1; i >= 0; i--) {
-    const count = days[i].contributionCount;
-    if (count > 0) {
-      streak++;
-    } else if (i === days.length - 1) {
-      continue; // today just hasn't happened yet, don't break the streak on it
-    } else {
-      break;
-    }
-  }
-
-  const [msg1, msg2] = (await getRecentCommitMessages(owner)).map((m) => escapeXML(truncate(m)));
-
-  writeFileSync(
-    "assets/card.svg",
-    renderSVG(owner, { repos: user.public_repos, stars, followers: user.followers, streak, topLang, topLangPct, msg1, msg2 })
-  );
+  writeFileSync("assets/card.svg", renderSVG(owner, { totalCommits }));
 }
 
-function renderSVG(owner, { repos, stars, followers, streak, topLang, topLangPct, msg1, msg2 }) {
-  const cmd = `$ stats --user ${owner}`;
-  const cursorX = (40 + cmd.length * 7.8).toFixed(0);
-  const w1 = ((msg1.length + 1) * 7.2).toFixed(0);
-  const w2 = ((msg2.length + 1) * 7.2).toFixed(0);
+function charWidth(text, fontSize) {
+  return Math.ceil(text.length * fontSize * 0.6);
+}
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" width="1200" height="460" role="img" aria-label="cartão de ${owner}">
+function renderSVG(owner, { totalCommits }) {
+  const lines = [
+    { x: 48, y: 80, size: 16, color: "#3DD673", markup: "$ whoami" },
+    { x: 48, y: 112, size: 24, color: "#4F86D6", markup: escapeXML(owner), plain: owner },
+    { x: 48, y: 156, size: 16, color: "#3DD673", markup: "$ cat role.txt" },
+    { x: 48, y: 188, size: 19, color: "#C9CDD3", markup: escapeXML(ROLE), plain: ROLE },
+    { x: 48, y: 212, size: 15, color: "#6B7280", markup: escapeXML(LOCATION), plain: LOCATION },
+    { x: 48, y: 256, size: 16, color: "#3DD673", markup: "$ cat stack.txt" },
+    { x: 48, y: 288, size: 18, color: "#C9CDD3", markup: escapeXML(STACK), plain: STACK },
+    { x: 48, y: 332, size: 16, color: "#3DD673", markup: "$ git log --oneline | wc -l" },
+    { x: 48, y: 372, size: 34, color: "#E5484D", markup: String(totalCommits) },
+    { x: 48, y: 416, size: 16, color: "#3DD673", markup: "$ cat social.txt" },
+    { x: 48, y: 448, size: 18, color: "#C9CDD3", markup: escapeXML(SOCIAL), plain: SOCIAL },
+    { x: 48, y: 492, size: 16, color: "#3DD673", markup: "$" },
+  ];
+
+  let begin = 0.2;
+  const clips = lines.map((l, i) => {
+    const plain = l.plain ?? l.markup;
+    const w = charWidth(plain, l.size) + 8;
+    const dur = Math.max(0.2, Math.min(0.8, plain.length * 0.03));
+    const clip = `<clipPath id="ln${i}"><rect x="${l.x}" y="${l.y - l.size}" width="0" height="${l.size + 8}"><animate attributeName="width" to="${w}" dur="${dur}s" begin="${begin.toFixed(2)}s" fill="freeze" calcMode="linear"/></rect></clipPath>`;
+    begin += dur + 0.12;
+    return clip;
+  });
+  const cursorDelay = (begin + 0.1).toFixed(2);
+
+  const textEls = lines
+    .map((l, i) => {
+      const fill = l.color ? ` fill="${l.color}"` : "";
+      return `<g clip-path="url(#ln${i})"><text x="${l.x}" y="${l.y}" font-family="'Courier New',ui-monospace,monospace" font-size="${l.size}"${fill}>${l.markup}</text></g>`;
+    })
+    .join("\n    ");
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="1200" height="520" role="img" aria-label="terminal de ${escapeXML(owner)}">
   <defs>
     <style>
-      .sparkle { animation: twinkle 2.6s ease-in-out infinite; }
-      .cur { animation: blink 1s steps(1) infinite; }
-      @keyframes twinkle { 0%,100% {opacity:.25} 50% {opacity:1} }
+      .cur { opacity: 0; animation: blink 1s steps(1) infinite; animation-delay: ${cursorDelay}s; }
       @keyframes blink { 0%,50% {opacity:1} 51%,100% {opacity:0} }
-      @media (prefers-reduced-motion: reduce) { .sparkle, .cur { animation: none; } }
+      @media (prefers-reduced-motion: reduce) { .cur { animation: none; opacity: 1; } }
     </style>
-    <clipPath id="type1"><rect x="104" y="110" width="0" height="18"><animate attributeName="width" dur="4s" begin="0s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.125;0.4;0.5;1" values="0;${w1};${w1};0;0"/></rect></clipPath>
-    <clipPath id="type2"><rect x="104" y="110" width="0" height="18"><animate attributeName="width" dur="4s" begin="0s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.5;0.625;0.9;1" values="0;0;${w2};${w2};0"/></rect></clipPath>
+    <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse">
+      <rect width="4" height="2" fill="#000" opacity=".18"/>
+    </pattern>
+    ${clips.join("\n    ")}
   </defs>
 
-  <rect width="1200" height="460" rx="12" fill="#14110D"/>
+  <rect width="1200" height="520" rx="12" fill="#0A0E14"/>
 
-  <!-- mascote -->
-  <g transform="translate(28,28)">
-    <g class="sparkle-group" transform="translate(25,-10)">
-      <path class="sparkle" d="M248,44 L251,52 L259,55 L251,58 L248,66 L245,58 L237,55 L245,52 Z" fill="#F2E8D5" style="animation-delay:.3s"/>
-      <path class="sparkle" d="M268,68 L270,73 L275,75 L270,77 L268,82 L266,77 L261,75 L266,73 Z" fill="#F2E8D5" style="animation-delay:1.1s"/>
-      <path class="sparkle" d="M232,74 L233,77 L236,78 L233,79 L232,82 L231,79 L228,78 L231,77 Z" fill="#B0532E" style="animation-delay:.7s"/>
-    </g>
+  <rect width="1200" height="48" rx="12" fill="#10141B"/>
+  <rect y="36" width="1200" height="12" fill="#10141B"/>
+  <circle cx="26" cy="24" r="7" fill="#E5484D"/>
+  <circle cx="48" cy="24" r="7" fill="#3DD673"/>
+  <circle cx="70" cy="24" r="7" fill="#4F86D6"/>
+  <text x="600" y="29" text-anchor="middle" font-family="'Courier New',ui-monospace,monospace" font-size="14" fill="#6B7280">${escapeXML(owner)}@github:~</text>
+  <line x1="0" y1="48" x2="1200" y2="48" stroke="#232A35" stroke-width="1"/>
 
-    <line x1="0" y1="236" x2="300" y2="236" stroke="#2A2419" stroke-width="2"/>
+  ${textEls}
 
-    <rect x="70" y="58" width="170" height="112" rx="8" fill="#F2E8D5"/>
-    <rect x="82" y="69" width="146" height="78" rx="4" fill="#1F1B14"/>
-    <rect x="140" y="170" width="30" height="16" fill="#F2E8D5"/>
-    <rect x="113" y="186" width="84" height="9" rx="3" fill="#F2E8D5"/>
+  <rect class="cur" x="60" y="476" width="11" height="18" fill="#3DD673"/>
 
-    <text x="92" y="90" font-family="'Courier New',ui-monospace,monospace" font-size="9" fill="#5C5442">$ git log --oneline</text>
-    <text x="92" y="122" font-family="'Courier New',ui-monospace,monospace" font-size="12" fill="#6B7A5E">&gt;</text>
-    <g clip-path="url(#type1)"><text x="104" y="122" font-family="'Courier New',ui-monospace,monospace" font-size="12" fill="#F2E8D5">${msg1}_</text></g>
-    <g clip-path="url(#type2)"><text x="104" y="122" font-family="'Courier New',ui-monospace,monospace" font-size="12" fill="#F2E8D5">${msg2}_</text></g>
-
-    <g>
-      <path d="M25,214 Q25,208 31,208 L49,208 Q55,208 55,214 L53,232 Q52,236 48,236 L32,236 Q28,236 27,232 Z" fill="#B0532E"/>
-      <path d="M55,214 Q65,214 65,222 Q65,230 55,229" fill="none" stroke="#B0532E" stroke-width="3"/>
-      <path d="M33,198 Q37,192 33,186" fill="none" stroke="#7A6F5C" stroke-width="2" stroke-linecap="round" opacity=".7"/>
-      <path d="M45,198 Q49,192 45,186" fill="none" stroke="#7A6F5C" stroke-width="2" stroke-linecap="round" opacity=".7"/>
-    </g>
-  </g>
-
-  <!-- texto -->
-  <g font-family="'Courier New',ui-monospace,monospace" font-size="15">
-    <rect x="352" y="95" width="820" height="30" fill="#1B2417"/>
-    <text x="368" y="116"><tspan fill="#8FA87E">+ </tspan><tspan fill="#F2E8D5">Hi, I'm Pedro, an AI Engineer</tspan></text>
-
-    <rect x="352" y="141" width="820" height="30" fill="#1F1A12"/>
-    <text x="368" y="162" fill="#B0532E">@@ RAG, multi-agent systems, applied LLMs @@</text>
-
-    <rect x="352" y="171" width="820" height="30" fill="#1B2417"/>
-    <text x="368" y="192"><tspan fill="#8FA87E">+ </tspan><tspan fill="#F2E8D5">São Luís, Brasil - CNPq fellow @ NCA/UFMA</tspan></text>
-
-    <rect x="352" y="201" width="820" height="30" fill="#1B2417"/>
-    <text x="368" y="222"><tspan fill="#8FA87E">+ </tspan><tspan fill="#F2E8D5">Kotlin de dia, Python quando ninguém tá vendo</tspan></text>
-
-    <rect x="352" y="231" width="820" height="30" fill="#2A1810"/>
-    <text x="368" y="252"><tspan fill="#B0532E">- </tspan><tspan fill="#F2E8D5">prompt perfeito de primeira</tspan></text>
-
-    <text x="368" y="294" font-size="12" fill="#5C5442">linkedin &#183; lattes &#183; scholar &#183; orcid &#183; last.fm</text>
-  </g>
-
-  <line x1="28" y1="350" x2="1172" y2="350" stroke="#2A2419" stroke-width="1"/>
-
-  <text x="40" y="366" font-family="'Courier New',ui-monospace,monospace" font-size="13" fill="#7A6F5C">${cmd}</text>
-  <rect class="cur" x="${cursorX}" y="356" width="7" height="12" fill="#7A6F5C"/>
-
-  <line x1="40" y1="380" x2="1160" y2="380" stroke="#2A2419" stroke-width="1"/>
-  <line x1="264" y1="390" x2="264" y2="432" stroke="#2A2419" stroke-width="1"/>
-  <line x1="488" y1="390" x2="488" y2="432" stroke="#2A2419" stroke-width="1"/>
-  <line x1="712" y1="390" x2="712" y2="432" stroke="#2A2419" stroke-width="1"/>
-  <line x1="936" y1="390" x2="936" y2="432" stroke="#2A2419" stroke-width="1"/>
-
-  <g font-family="'Courier New',ui-monospace,monospace" text-anchor="middle">
-    <text x="152" y="408" font-size="10.5" letter-spacing="2" fill="#7A6F5C">REPOS</text>
-    <text x="152" y="432" font-size="22" fill="#F2E8D5">${repos}</text>
-
-    <text x="376" y="408" font-size="10.5" letter-spacing="2" fill="#7A6F5C">STARS</text>
-    <text x="376" y="432" font-size="22" fill="#F2E8D5">${stars}</text>
-
-    <text x="600" y="408" font-size="10.5" letter-spacing="2" fill="#7A6F5C">FOLLOWERS</text>
-    <text x="600" y="432" font-size="22" fill="#F2E8D5">${followers}</text>
-
-    <text x="824" y="408" font-size="10.5" letter-spacing="2" fill="#7A6F5C">STREAK</text>
-    <text x="824" y="432" font-size="22" fill="#F2E8D5">${streak}d</text>
-
-    <text x="1048" y="408" font-size="10.5" letter-spacing="2" fill="#7A6F5C">TOP LANG</text>
-    <text x="1048" y="432" font-size="22" fill="#F2E8D5">${topLang} ${topLangPct}%</text>
-  </g>
-
-  <text x="1160" y="444" text-anchor="end" font-family="'Courier New',ui-monospace,monospace" font-size="9" fill="#5C5442">updated daily</text>
+  <rect width="1200" height="520" rx="12" fill="url(#scan)" opacity=".05"/>
+  <rect x="1" y="1" width="1198" height="518" rx="12" fill="none" stroke="#3DD673" stroke-width="1.5" opacity=".35"/>
 </svg>
 `;
 }
