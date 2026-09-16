@@ -1,9 +1,9 @@
-<table>
+<table width="100%">
 <tr>
-<td width="300">
+<td width="38%" valign="top">
 <img src="./assets/avatar.svg" width="100%" alt="mascote de Pedro em frente a um monitor" />
 </td>
-<td>
+<td valign="middle">
 
 ```diff
 + Hi, I'm Pedro, an AI Engineer
