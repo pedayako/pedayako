@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="1200" height="520" role="img" aria-label="terminal de pedayako">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 672" width="1200" height="672" role="img" aria-label="terminal de pedayako">
   <defs>
     <style>
-      .cur { opacity: 0; animation: blink 1s steps(1) infinite; animation-delay: 7.65s; }
+      .cur { opacity: 0; animation: blink 1s steps(1) infinite; animation-delay: 10.75s; }
       @keyframes blink { 0%,50% {opacity:1} 51%,100% {opacity:0} }
       @media (prefers-reduced-motion: reduce) { .cur { animation: none; opacity: 1; } }
     </style>
@@ -15,14 +15,18 @@
     <clipPath id="ln4"><rect x="48" y="197" width="0" height="23"><animate attributeName="width" to="152" dur="0.48s" begin="2.38s" fill="freeze" calcMode="linear"/></rect></clipPath>
     <clipPath id="ln5"><rect x="48" y="240" width="0" height="24"><animate attributeName="width" to="152" dur="0.44999999999999996s" begin="2.98s" fill="freeze" calcMode="linear"/></rect></clipPath>
     <clipPath id="ln6"><rect x="48" y="270" width="0" height="26"><animate attributeName="width" to="592" dur="0.8s" begin="3.55s" fill="freeze" calcMode="linear"/></rect></clipPath>
-    <clipPath id="ln7"><rect x="48" y="316" width="0" height="24"><animate attributeName="width" to="268" dur="0.8s" begin="4.47s" fill="freeze" calcMode="linear"/></rect></clipPath>
-    <clipPath id="ln8"><rect x="48" y="338" width="0" height="42"><animate attributeName="width" to="70" dur="0.2s" begin="5.39s" fill="freeze" calcMode="linear"/></rect></clipPath>
-    <clipPath id="ln9"><rect x="48" y="400" width="0" height="24"><animate attributeName="width" to="162" dur="0.48s" begin="5.71s" fill="freeze" calcMode="linear"/></rect></clipPath>
-    <clipPath id="ln10"><rect x="48" y="430" width="0" height="26"><animate attributeName="width" to="494" dur="0.8s" begin="6.31s" fill="freeze" calcMode="linear"/></rect></clipPath>
-    <clipPath id="ln11"><rect x="48" y="476" width="0" height="24"><animate attributeName="width" to="18" dur="0.2s" begin="7.23s" fill="freeze" calcMode="linear"/></rect></clipPath>
+    <clipPath id="ln7"><rect x="48" y="316" width="0" height="24"><animate attributeName="width" to="191" dur="0.57s" begin="4.47s" fill="freeze" calcMode="linear"/></rect></clipPath>
+    <clipPath id="ln8"><rect x="48" y="346" width="0" height="26"><animate attributeName="width" to="754" dur="0.8s" begin="5.16s" fill="freeze" calcMode="linear"/></rect></clipPath>
+    <clipPath id="ln9"><rect x="48" y="392" width="0" height="24"><animate attributeName="width" to="268" dur="0.8s" begin="6.08s" fill="freeze" calcMode="linear"/></rect></clipPath>
+    <clipPath id="ln10"><rect x="48" y="414" width="0" height="42"><animate attributeName="width" to="70" dur="0.2s" begin="7.00s" fill="freeze" calcMode="linear"/></rect></clipPath>
+    <clipPath id="ln11"><rect x="48" y="476" width="0" height="24"><animate attributeName="width" to="152" dur="0.44999999999999996s" begin="7.32s" fill="freeze" calcMode="linear"/></rect></clipPath>
+    <clipPath id="ln12"><rect x="48" y="506" width="0" height="26"><animate attributeName="width" to="365" dur="0.8s" begin="7.89s" fill="freeze" calcMode="linear"/></rect></clipPath>
+    <clipPath id="ln13"><rect x="48" y="552" width="0" height="24"><animate attributeName="width" to="162" dur="0.48s" begin="8.81s" fill="freeze" calcMode="linear"/></rect></clipPath>
+    <clipPath id="ln14"><rect x="48" y="582" width="0" height="26"><animate attributeName="width" to="494" dur="0.8s" begin="9.41s" fill="freeze" calcMode="linear"/></rect></clipPath>
+    <clipPath id="ln15"><rect x="48" y="628" width="0" height="24"><animate attributeName="width" to="18" dur="0.2s" begin="10.33s" fill="freeze" calcMode="linear"/></rect></clipPath>
   </defs>
 
-  <rect width="1200" height="520" rx="12" fill="#0A0E14"/>
+  <rect width="1200" height="672" rx="12" fill="#0A0E14"/>
 
   <rect width="1200" height="48" rx="12" fill="#10141B"/>
   <rect y="36" width="1200" height="12" fill="#10141B"/>
@@ -39,14 +43,18 @@
     <g clip-path="url(#ln4)"><text x="48" y="212" font-family="'Courier New',ui-monospace,monospace" font-size="15" fill="#6B7280">São Luís, Brasil</text></g>
     <g clip-path="url(#ln5)"><text x="48" y="256" font-family="'Courier New',ui-monospace,monospace" font-size="16" fill="#3DD673">$ cat stack.txt</text></g>
     <g clip-path="url(#ln6)"><text x="48" y="288" font-family="'Courier New',ui-monospace,monospace" font-size="18" fill="#C9CDD3">Kotlin · Python · Java · Spring · Docker · AWS · Azure</text></g>
-    <g clip-path="url(#ln7)"><text x="48" y="332" font-family="'Courier New',ui-monospace,monospace" font-size="16" fill="#3DD673">$ git log --oneline | wc -l</text></g>
-    <g clip-path="url(#ln8)"><text x="48" y="372" font-family="'Courier New',ui-monospace,monospace" font-size="34" fill="#E5484D">271</text></g>
-    <g clip-path="url(#ln9)"><text x="48" y="416" font-family="'Courier New',ui-monospace,monospace" font-size="16" fill="#3DD673">$ cat social.txt</text></g>
-    <g clip-path="url(#ln10)"><text x="48" y="448" font-family="'Courier New',ui-monospace,monospace" font-size="18" fill="#C9CDD3">LinkedIn · Lattes · Scholar · ORCID · last.fm</text></g>
-    <g clip-path="url(#ln11)"><text x="48" y="492" font-family="'Courier New',ui-monospace,monospace" font-size="16" fill="#3DD673">$</text></g>
+    <g clip-path="url(#ln7)"><text x="48" y="332" font-family="'Courier New',ui-monospace,monospace" font-size="16" fill="#3DD673">$ cat languages.txt</text></g>
+    <g clip-path="url(#ln8)"><text x="48" y="364" font-family="'Courier New',ui-monospace,monospace" font-size="18" fill="#C9CDD3">Python 96.0% · C 2.9% · Java 0.8% · PowerShell 0.2% · JavaScript 0.0%</text></g>
+    <g clip-path="url(#ln9)"><text x="48" y="408" font-family="'Courier New',ui-monospace,monospace" font-size="16" fill="#3DD673">$ git log --oneline | wc -l</text></g>
+    <g clip-path="url(#ln10)"><text x="48" y="448" font-family="'Courier New',ui-monospace,monospace" font-size="34" fill="#E5484D">272</text></g>
+    <g clip-path="url(#ln11)"><text x="48" y="492" font-family="'Courier New',ui-monospace,monospace" font-size="16" fill="#3DD673">$ cat stats.txt</text></g>
+    <g clip-path="url(#ln12)"><text x="48" y="524" font-family="'Courier New',ui-monospace,monospace" font-size="18" fill="#C9CDD3">10 repos · 8 stars · 17 followers</text></g>
+    <g clip-path="url(#ln13)"><text x="48" y="568" font-family="'Courier New',ui-monospace,monospace" font-size="16" fill="#3DD673">$ cat social.txt</text></g>
+    <g clip-path="url(#ln14)"><text x="48" y="600" font-family="'Courier New',ui-monospace,monospace" font-size="18" fill="#C9CDD3">LinkedIn · Lattes · Scholar · ORCID · last.fm</text></g>
+    <g clip-path="url(#ln15)"><text x="48" y="644" font-family="'Courier New',ui-monospace,monospace" font-size="16" fill="#3DD673">$</text></g>
 
-  <rect class="cur" x="60" y="476" width="11" height="18" fill="#3DD673"/>
+  <rect class="cur" x="60" y="628" width="11" height="18" fill="#3DD673"/>
 
-  <rect width="1200" height="520" rx="12" fill="url(#scan)" opacity=".05"/>
-  <rect x="1" y="1" width="1198" height="518" rx="12" fill="none" stroke="#3DD673" stroke-width="1.5" opacity=".35"/>
+  <rect width="1200" height="672" rx="12" fill="url(#scan)" opacity=".05"/>
+  <rect x="1" y="1" width="1198" height="670" rx="12" fill="none" stroke="#3DD673" stroke-width="1.5" opacity=".35"/>
 </svg>
