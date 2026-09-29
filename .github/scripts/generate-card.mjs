@@ -56,18 +56,77 @@ async function getTotalCommits(login, createdAt) {
   return total;
 }
 
+async function getRepoStats(login) {
+  const query = `
+    query($login: String!, $cursor: String) {
+      user(login: $login) {
+        followers { totalCount }
+        repositories(first: 100, after: $cursor, ownerAffiliations: [OWNER], isFork: false, privacy: PUBLIC) {
+          totalCount
+          pageInfo { hasNextPage endCursor }
+          nodes {
+            stargazerCount
+            languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
+              edges { size node { name } }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  let cursor = null;
+  let hasNextPage = true;
+  let totalStars = 0;
+  let repoCount = 0;
+  let followers = 0;
+  const langSizes = new Map();
+
+  while (hasNextPage) {
+    const data = await graphql(query, { login, cursor });
+    const repos = data.user.repositories;
+    followers = data.user.followers.totalCount;
+    repoCount = repos.totalCount;
+
+    for (const repo of repos.nodes) {
+      totalStars += repo.stargazerCount;
+      for (const edge of repo.languages.edges) {
+        langSizes.set(edge.node.name, (langSizes.get(edge.node.name) || 0) + edge.size);
+      }
+    }
+
+    hasNextPage = repos.pageInfo.hasNextPage;
+    cursor = repos.pageInfo.endCursor;
+  }
+
+  const totalSize = [...langSizes.values()].reduce((a, b) => a + b, 0) || 1;
+  const topLanguages = [...langSizes.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5)
+    .map(([name, size]) => `${name} ${((size / totalSize) * 100).toFixed(1)}%`)
+    .join(" · ");
+
+  return { totalStars, repoCount, followers, topLanguages: topLanguages || "n/a" };
+}
+
 async function main() {
   const user = await fetchJSON(`https://api.github.com/users/${owner}`);
   const totalCommits = await getTotalCommits(owner, user.created_at);
+  const { totalStars, repoCount, followers, topLanguages } = await getRepoStats(owner);
 
-  writeFileSync("assets/card.svg", renderSVG(owner, { totalCommits }));
+  writeFileSync(
+    "assets/card.svg",
+    renderSVG(owner, { totalCommits, totalStars, repoCount, followers, topLanguages })
+  );
 }
 
 function charWidth(text, fontSize) {
   return Math.ceil(text.length * fontSize * 0.6);
 }
 
-function renderSVG(owner, { totalCommits }) {
+function renderSVG(owner, { totalCommits, totalStars, repoCount, followers, topLanguages }) {
+  const statsLine = `${repoCount} repos · ${totalStars} stars · ${followers} followers`;
+
   const lines = [
     { x: 48, y: 80, size: 16, color: "#3DD673", markup: "$ whoami" },
     { x: 48, y: 112, size: 24, color: "#4F86D6", markup: escapeXML(owner), plain: owner },
@@ -76,12 +135,18 @@ function renderSVG(owner, { totalCommits }) {
     { x: 48, y: 212, size: 15, color: "#6B7280", markup: escapeXML(LOCATION), plain: LOCATION },
     { x: 48, y: 256, size: 16, color: "#3DD673", markup: "$ cat stack.txt" },
     { x: 48, y: 288, size: 18, color: "#C9CDD3", markup: escapeXML(STACK), plain: STACK },
-    { x: 48, y: 332, size: 16, color: "#3DD673", markup: "$ git log --oneline | wc -l" },
-    { x: 48, y: 372, size: 34, color: "#E5484D", markup: String(totalCommits) },
-    { x: 48, y: 416, size: 16, color: "#3DD673", markup: "$ cat social.txt" },
-    { x: 48, y: 448, size: 18, color: "#C9CDD3", markup: escapeXML(SOCIAL), plain: SOCIAL },
-    { x: 48, y: 492, size: 16, color: "#3DD673", markup: "$" },
+    { x: 48, y: 332, size: 16, color: "#3DD673", markup: "$ cat languages.txt" },
+    { x: 48, y: 364, size: 18, color: "#C9CDD3", markup: escapeXML(topLanguages), plain: topLanguages },
+    { x: 48, y: 408, size: 16, color: "#3DD673", markup: "$ git log --oneline | wc -l" },
+    { x: 48, y: 448, size: 34, color: "#E5484D", markup: String(totalCommits) },
+    { x: 48, y: 492, size: 16, color: "#3DD673", markup: "$ cat stats.txt" },
+    { x: 48, y: 524, size: 18, color: "#C9CDD3", markup: escapeXML(statsLine), plain: statsLine },
+    { x: 48, y: 568, size: 16, color: "#3DD673", markup: "$ cat social.txt" },
+    { x: 48, y: 600, size: 18, color: "#C9CDD3", markup: escapeXML(SOCIAL), plain: SOCIAL },
+    { x: 48, y: 644, size: 16, color: "#3DD673", markup: "$" },
   ];
+
+  const height = 672;
 
   let begin = 0.2;
   const clips = lines.map((l, i) => {
@@ -101,7 +166,7 @@ function renderSVG(owner, { totalCommits }) {
     })
     .join("\n    ");
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="1200" height="520" role="img" aria-label="terminal de ${escapeXML(owner)}">
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 ${height}" width="1200" height="${height}" role="img" aria-label="terminal de ${escapeXML(owner)}">
   <defs>
     <style>
       .cur { opacity: 0; animation: blink 1s steps(1) infinite; animation-delay: ${cursorDelay}s; }
@@ -114,7 +179,7 @@ function renderSVG(owner, { totalCommits }) {
     ${clips.join("\n    ")}
   </defs>
 
-  <rect width="1200" height="520" rx="12" fill="#0A0E14"/>
+  <rect width="1200" height="${height}" rx="12" fill="#0A0E14"/>
 
   <rect width="1200" height="48" rx="12" fill="#10141B"/>
   <rect y="36" width="1200" height="12" fill="#10141B"/>
@@ -126,10 +191,10 @@ function renderSVG(owner, { totalCommits }) {
 
   ${textEls}
 
-  <rect class="cur" x="60" y="476" width="11" height="18" fill="#3DD673"/>
+  <rect class="cur" x="60" y="628" width="11" height="18" fill="#3DD673"/>
 
-  <rect width="1200" height="520" rx="12" fill="url(#scan)" opacity=".05"/>
-  <rect x="1" y="1" width="1198" height="518" rx="12" fill="none" stroke="#3DD673" stroke-width="1.5" opacity=".35"/>
+  <rect width="1200" height="${height}" rx="12" fill="url(#scan)" opacity=".05"/>
+  <rect x="1" y="1" width="1198" height="${height - 2}" rx="12" fill="none" stroke="#3DD673" stroke-width="1.5" opacity=".35"/>
 </svg>
 `;
 }
