@@ -56,16 +56,13 @@ async function getTotalCommits(login, createdAt) {
   return total;
 }
 
-async function getRepoStats(login) {
+async function getTopLanguages(login) {
   const query = `
     query($login: String!, $cursor: String) {
       user(login: $login) {
-        followers { totalCount }
         repositories(first: 100, after: $cursor, ownerAffiliations: [OWNER], isFork: false, privacy: PUBLIC) {
-          totalCount
           pageInfo { hasNextPage endCursor }
           nodes {
-            stargazerCount
             languages(first: 10, orderBy: { field: SIZE, direction: DESC }) {
               edges { size node { name } }
             }
@@ -77,19 +74,13 @@ async function getRepoStats(login) {
 
   let cursor = null;
   let hasNextPage = true;
-  let totalStars = 0;
-  let repoCount = 0;
-  let followers = 0;
   const langSizes = new Map();
 
   while (hasNextPage) {
     const data = await graphql(query, { login, cursor });
     const repos = data.user.repositories;
-    followers = data.user.followers.totalCount;
-    repoCount = repos.totalCount;
 
     for (const repo of repos.nodes) {
-      totalStars += repo.stargazerCount;
       for (const edge of repo.languages.edges) {
         langSizes.set(edge.node.name, (langSizes.get(edge.node.name) || 0) + edge.size);
       }
@@ -106,27 +97,22 @@ async function getRepoStats(login) {
     .map(([name, size]) => `${name} ${((size / totalSize) * 100).toFixed(1)}%`)
     .join(" · ");
 
-  return { totalStars, repoCount, followers, topLanguages: topLanguages || "n/a" };
+  return topLanguages || "n/a";
 }
 
 async function main() {
   const user = await fetchJSON(`https://api.github.com/users/${owner}`);
   const totalCommits = await getTotalCommits(owner, user.created_at);
-  const { totalStars, repoCount, followers, topLanguages } = await getRepoStats(owner);
+  const topLanguages = await getTopLanguages(owner);
 
-  writeFileSync(
-    "assets/card.svg",
-    renderSVG(owner, { totalCommits, totalStars, repoCount, followers, topLanguages })
-  );
+  writeFileSync("assets/card.svg", renderSVG(owner, { totalCommits, topLanguages }));
 }
 
 function charWidth(text, fontSize) {
   return Math.ceil(text.length * fontSize * 0.6);
 }
 
-function renderSVG(owner, { totalCommits, totalStars, repoCount, followers, topLanguages }) {
-  const statsLine = `${repoCount} repos · ${totalStars} stars · ${followers} followers`;
-
+function renderSVG(owner, { totalCommits, topLanguages }) {
   const lines = [
     { x: 48, y: 80, size: 16, color: "#3DD673", markup: "$ whoami" },
     { x: 48, y: 112, size: 24, color: "#4F86D6", markup: escapeXML(owner), plain: owner },
@@ -139,14 +125,12 @@ function renderSVG(owner, { totalCommits, totalStars, repoCount, followers, topL
     { x: 48, y: 364, size: 18, color: "#C9CDD3", markup: escapeXML(topLanguages), plain: topLanguages },
     { x: 48, y: 408, size: 16, color: "#3DD673", markup: "$ git log --oneline | wc -l" },
     { x: 48, y: 448, size: 34, color: "#E5484D", markup: String(totalCommits) },
-    { x: 48, y: 492, size: 16, color: "#3DD673", markup: "$ cat stats.txt" },
-    { x: 48, y: 524, size: 18, color: "#C9CDD3", markup: escapeXML(statsLine), plain: statsLine },
-    { x: 48, y: 568, size: 16, color: "#3DD673", markup: "$ cat social.txt" },
-    { x: 48, y: 600, size: 18, color: "#C9CDD3", markup: escapeXML(SOCIAL), plain: SOCIAL },
-    { x: 48, y: 644, size: 16, color: "#3DD673", markup: "$" },
+    { x: 48, y: 492, size: 16, color: "#3DD673", markup: "$ cat social.txt" },
+    { x: 48, y: 524, size: 18, color: "#C9CDD3", markup: escapeXML(SOCIAL), plain: SOCIAL },
+    { x: 48, y: 568, size: 16, color: "#3DD673", markup: "$" },
   ];
 
-  const height = 672;
+  const height = 596;
 
   let begin = 0.2;
   const clips = lines.map((l, i) => {
@@ -191,7 +175,7 @@ function renderSVG(owner, { totalCommits, totalStars, repoCount, followers, topL
 
   ${textEls}
 
-  <rect class="cur" x="60" y="628" width="11" height="18" fill="#3DD673"/>
+  <rect class="cur" x="60" y="552" width="11" height="18" fill="#3DD673"/>
 
   <rect width="1200" height="${height}" rx="12" fill="url(#scan)" opacity=".05"/>
   <rect x="1" y="1" width="1198" height="${height - 2}" rx="12" fill="none" stroke="#3DD673" stroke-width="1.5" opacity=".35"/>
