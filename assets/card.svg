@@ -36,7 +36,7 @@
   <text x="600" y="29" text-anchor="middle" font-family="'Courier New',ui-monospace,monospace" font-size="14" fill="#6B7280">pedayako@github:~</text>
   <line x1="0" y1="48" x2="1200" y2="48" stroke="#232A35" stroke-width="1"/>
 
-  <g clip-path="url(#ln0)"><text x="48" y="80" font-family="'Courier New',ui-monospace,monospace" font-size="16" fill="#3DD673">$ whoami</text></g>
+  <g clip-path="url(#ln0)"><text x="48" y="80" font-family="'Courier New',ui-monospace,monospace" font-size="16" fill="#3DD673">$ whoiam</text></g>
     <g clip-path="url(#ln1)"><text x="48" y="112" font-family="'Courier New',ui-monospace,monospace" font-size="24" fill="#4F86D6">pedayako</text></g>
     <g clip-path="url(#ln2)"><text x="48" y="156" font-family="'Courier New',ui-monospace,monospace" font-size="16" fill="#3DD673">$ cat role.txt</text></g>
     <g clip-path="url(#ln3)"><text x="48" y="188" font-family="'Courier New',ui-monospace,monospace" font-size="19" fill="#C9CDD3">AI Engineer @ PagBank - CNPq fellow @ NCA/UFMA</text></g>
