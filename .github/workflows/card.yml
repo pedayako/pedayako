@@ -21,7 +21,9 @@ jobs:
 
       - name: gerar assets/card.svg
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # secrets.GITHUB_TOKEN só enxerga este repositório; um PAT pessoal
+          # é necessário para contar commits/repos em toda a conta.
+          GITHUB_TOKEN: ${{ secrets.STATS_TOKEN }}
         run: node .github/scripts/generate-card.mjs
 
       - name: commitar se mudou
